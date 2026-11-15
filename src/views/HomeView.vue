@@ -6,6 +6,9 @@ import { getCategories, getProducts, queryKeys } from '@/services/queries'
 import QueryError from '@/components/QueryError.vue'
 import ProductGrid from '@/components/ProductGrid.vue'
 
+/** Arquivos de /public precisam do base (no GitHub Pages o site fica em /dad-catalog/) */
+const baseUrl = import.meta.env.BASE_URL
+
 const {
   data: categories,
   isPending: isLoadingCategories,
@@ -76,12 +79,12 @@ const {
           <!-- Colagem de fotos -->
           <div class="relative hidden h-80 md:block">
             <img
-              src="/images/polos.webp"
+              :src="`${baseUrl}images/polos.webp`"
               alt=""
               class="absolute right-40 top-6 h-64 w-48 -rotate-6 rounded-2xl object-cover shadow-2xl ring-4 ring-white/80"
             />
             <img
-              src="/images/tshirts.webp"
+              :src="`${baseUrl}images/tshirts.webp`"
               alt=""
               class="absolute right-4 top-0 h-72 w-52 rotate-3 rounded-2xl object-cover shadow-2xl ring-4 ring-white/80"
             />
