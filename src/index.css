@@ -1,0 +1,93 @@
+@import "tailwindcss";
+@plugin "tailwindcss-primeui";
+
+/* "dark:" ativa com a classe .dark no <html>, controlada pelo seletor de tema do header */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand: #e24e1b;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+ * Tema escuro sem precisar de "dark:" em cada classe: as escalas surface, primary e red
+ * são invertidas (50 <-> 950, 100 <-> 900...). Assim "bg-surface-0" vira o fundo escuro,
+ * "text-surface-900" vira texto claro, "bg-primary-50" vira um tom escuro do primary etc.
+ * As cores ficam em variáveis (não "inline") pra poderem ser trocadas aqui.
+ */
+@theme {
+  --color-surface-0: var(--p-surface-0);
+  --color-surface-50: var(--p-surface-50);
+  --color-surface-100: var(--p-surface-100);
+  --color-surface-200: var(--p-surface-200);
+  --color-surface-300: var(--p-surface-300);
+  --color-surface-400: var(--p-surface-400);
+  --color-surface-500: var(--p-surface-500);
+  --color-surface-600: var(--p-surface-600);
+  --color-surface-700: var(--p-surface-700);
+  --color-surface-800: var(--p-surface-800);
+  --color-surface-900: var(--p-surface-900);
+  --color-surface-950: var(--p-surface-950);
+  --color-primary-50: var(--p-primary-50);
+  --color-primary-100: var(--p-primary-100);
+  --color-primary-200: var(--p-primary-200);
+  --color-primary-300: var(--p-primary-300);
+  --color-primary-400: var(--p-primary-400);
+  --color-primary-500: var(--p-primary-500);
+  --color-primary-600: var(--p-primary-600);
+  --color-primary-700: var(--p-primary-700);
+  --color-primary-800: var(--p-primary-800);
+  --color-primary-900: var(--p-primary-900);
+  --color-primary-950: var(--p-primary-950);
+}
+
+.dark {
+  color-scheme: dark;
+  --color-surface-0: var(--p-surface-950);
+  /*
+   * No claro, 0 (branco) e 50 quase não se distinguem; 950 e 900 no escuro ficam bem diferentes.
+   * Mistura só um pouco do 900 no fundo pra manter a mesma diferença sutil do claro.
+   */
+  --color-surface-50: color-mix(in srgb, var(--p-surface-950), var(--p-surface-900) 15%);
+  --color-surface-100: var(--p-surface-800);
+  --color-surface-200: var(--p-surface-700);
+  --color-surface-300: var(--p-surface-600);
+  --color-surface-400: var(--p-surface-500);
+  --color-surface-500: var(--p-surface-400);
+  --color-surface-600: var(--p-surface-300);
+  --color-surface-700: var(--p-surface-200);
+  --color-surface-800: var(--p-surface-100);
+  --color-surface-900: var(--p-surface-50);
+  --color-surface-950: var(--p-surface-0);
+  --color-primary-50: var(--p-primary-950);
+  --color-primary-100: var(--p-primary-900);
+  --color-primary-200: var(--p-primary-800);
+  --color-primary-300: var(--p-primary-700);
+  --color-primary-400: var(--p-primary-600);
+  --color-primary-500: var(--p-primary-500);
+  --color-primary-600: var(--p-primary-400);
+  --color-primary-700: var(--p-primary-300);
+  --color-primary-800: var(--p-primary-200);
+  --color-primary-900: var(--p-primary-100);
+  --color-primary-950: var(--p-primary-50);
+  --color-red-50: oklch(25.8% 0.092 26.042);
+  --color-red-100: oklch(39.6% 0.141 25.723);
+  --color-red-200: oklch(44.4% 0.177 26.899);
+  --color-red-300: oklch(50.5% 0.213 27.518);
+  --color-red-400: oklch(57.7% 0.245 27.325);
+  --color-red-500: oklch(63.7% 0.237 25.331);
+  --color-red-600: oklch(70.4% 0.191 22.216);
+  --color-red-700: oklch(80.8% 0.114 19.571);
+  --color-red-800: oklch(88.5% 0.062 18.334);
+  --color-red-900: oklch(93.6% 0.032 17.717);
+  --color-red-950: oklch(97.1% 0.013 17.38);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-surface-0);
+  color: var(--color-surface-950);
+}
